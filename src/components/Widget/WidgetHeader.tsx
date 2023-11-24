@@ -25,7 +25,7 @@ const WidgetHeader = ({ widgetData }: WidgetHeaderProps) => {
                 </div>
                 <div className="flex">
                     <h2 className="font-bold text-xl">
-                        {"product effect here"}
+                        {widgetData.amount + " " + widgetData.type}
                     </h2>
                 </div>
             </div>
