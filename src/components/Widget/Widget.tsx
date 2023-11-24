@@ -3,6 +3,7 @@ import WidgetIcon from "./WidgetIcon";
 import { ProductWidgetDomain } from "../../types/types";
 import { getColorCode } from "../../utils";
 import WidgetHeader from "./WidgetHeader";
+import WidgetBody from "./WidgetBody";
 
 interface WidgetProps {
     widgetData: ProductWidgetDomain;
@@ -10,8 +11,9 @@ interface WidgetProps {
 
 const Widget = ({ widgetData }: WidgetProps) => {
     return (
-        <div className="flex rounded-md p-5">
+        <div className="flex flex-col rounded-md p-5 gap-2 font-normal text-sm">
             <WidgetHeader widgetData={widgetData} />
+            <WidgetBody />
         </div>
     );
 };
