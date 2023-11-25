@@ -164,8 +164,8 @@
     box-shadow: 0px 0px 5px 5px #0099e0;
 } */
 
-.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-thumb {
-    -webkit-box-shadow: 0px 0px 20px var(--greenColor);
-    -moz-box-shadow: 0px 0px 20px var(--greenColor);
-    box-shadow: 0px 0px 20px var(--greenColor);
+.react-toggle:hover .react-toggle-thumb {
+    -webkit-box-shadow: 0 0 0 5px rgba(175, 198, 189, 0.7);
+    -moz-box-shadow: 0 0 0 5px rgba(175, 198, 189, 0.7);
+    box-shadow: 0 0 0 5px rgba(175, 198, 189, 0.7);
 }

@@ -31,7 +31,7 @@ const BadgeColorSelect = ({ widgetData }: BadgeColorSelectProps) => {
                 return (
                     <div
                         key={`select_${item}`}
-                        className={`flex w-[16px] h-[16px] relative group`}
+                        className={`flex w-[16px] h-[16px] relative group cursor-pointer`}
                         style={{
                             backgroundColor: getColorCode(item),
                             borderWidth: `${border}px`,

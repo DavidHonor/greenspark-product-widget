@@ -25,7 +25,7 @@ const CustomCheckbox = ({ widgetData }: CustomCheckboxProps) => {
 
     return (
         <div
-            className="flex items-center justify-center w-[18px] h-[18px] relative group"
+            className="flex items-center justify-center w-[18px] h-[18px] relative group cursor-pointer"
             style={{
                 backgroundColor: widgetData.linked
                     ? getColorCode("green")
