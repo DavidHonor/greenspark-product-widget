@@ -24,7 +24,7 @@ const WidgetHeader = ({ widgetData }: WidgetHeaderProps) => {
                     This product {widgetData.action}
                 </div>
                 <div className="flex">
-                    <h2 className="font-bold text-xl">
+                    <h2 className="font-bold text-lg">
                         {widgetData.amount + " " + widgetData.type}
                     </h2>
                 </div>

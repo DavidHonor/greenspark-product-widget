@@ -11,7 +11,7 @@ interface WidgetProps {
 
 const Widget = ({ widgetData }: WidgetProps) => {
     return (
-        <div className="flex flex-col rounded-md p-5 gap-2 font-normal text-sm">
+        <div className="flex flex-col rounded-md p-4 gap-2 font-normal text-sm basis-1/3">
             <WidgetHeader widgetData={widgetData} />
             <WidgetBody />
         </div>
