@@ -8,7 +8,7 @@ interface ProductWidgetsProps {
 const ProductWidgets = ({ data }: ProductWidgetsProps) => {
     return (
         <div
-            className="flex flex-col w-[350px] md:w-[850px] shadow-lg rounded-md py-6 px-8"
+            className="flex flex-col w-[350px] md:w-[850px] shadow-2xl rounded-md py-6 px-8"
             style={{ backgroundColor: "#F9F9F9" }}
         >
             <div className="flex py-2">
