@@ -1,27 +1,43 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import ProductWidgets from "./components/ProductWidgets";
-import { ProductWidgetDomain } from "./types/types";
-import { fetchData } from "./utils";
+
 import { Loader2 } from "lucide-react";
 
-const App = () => {
-    const [data, setData] = useState<ProductWidgetDomain[]>();
+import { useDispatch, useSelector } from "react-redux";
+import {
+    fetchProducts,
+    selectProducts,
+} from "./features/widgets/productWidgetsSlice";
+import { AppDispatch } from "./app/store";
 
-    const getWidgetData = async () => {
-        const result = await fetchData();
-        if (result.status === "ok") setData(result.data);
-    };
+const App = () => {
+    const dispatch: AppDispatch = useDispatch();
+    const products = useSelector(selectProducts);
+
+    const isFetchingRef = useRef(false);
 
     useEffect(() => {
-        getWidgetData();
-    }, []);
+        const fetchDataAndDispatch = async () => {
+            try {
+                if (!isFetchingRef.current) {
+                    isFetchingRef.current = true;
+                    await dispatch(fetchProducts());
+                }
+            } finally {
+                isFetchingRef.current = false;
+            }
+        };
+        if (!products || products.length === 0) {
+            fetchDataAndDispatch();
+        }
+    }, [dispatch, products]);
 
     return (
         <div className="top-0 left-0 flex w-[100vw] h-[100vh] items-center justify-center">
-            {!data ? (
+            {!products.length || isFetchingRef.current ? (
                 <Loader2 className="h-6 w-6 animate-spin" />
             ) : (
-                <ProductWidgets data={data} />
+                <ProductWidgets data={products} />
             )}
         </div>
     );

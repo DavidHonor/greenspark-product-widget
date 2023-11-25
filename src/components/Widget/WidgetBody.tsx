@@ -1,6 +1,6 @@
-import React from "react";
 import { getColorCode } from "../../utils";
-import { Info } from "lucide-react";
+import CustomCheckbox from "../CustomCheckbox/CustomCheckbox";
+
 import Popover from "../Popover/Popover";
 
 const WidgetBody = () => {
@@ -13,7 +13,7 @@ const WidgetBody = () => {
                     Link to Public Profile <Popover />
                 </div>
                 <div className="flex">
-                    <input type="checkbox" />
+                    <CustomCheckbox />
                 </div>
             </div>
 
