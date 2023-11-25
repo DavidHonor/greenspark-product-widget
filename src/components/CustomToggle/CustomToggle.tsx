@@ -1,6 +1,5 @@
 import { ProductWidgetDomain } from "../../types/types";
 
-import "react-toggle/style.css";
 import "./Toggle.css";
 import Toggle from "react-toggle";
 import { AppDispatch } from "../../app/store";
@@ -28,7 +27,6 @@ const CustomToggle = ({ widgetData }: CustomToggleProps) => {
             checked={widgetData.active}
             onChange={toggleChange}
             icons={false}
-            className="custom-classname"
         />
     );
 };
