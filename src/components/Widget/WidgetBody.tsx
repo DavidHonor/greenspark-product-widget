@@ -1,5 +1,7 @@
 import React from "react";
 import { getColorCode } from "../../utils";
+import { Info } from "lucide-react";
+import Popover from "../Popover/Popover";
 
 const WidgetBody = () => {
     const textColor = getColorCode("green");
@@ -7,7 +9,9 @@ const WidgetBody = () => {
     return (
         <div className="flex flex-col" style={{ color: textColor }}>
             <div className="flex justify-between">
-                <div className="flex">Link to Public Profile</div>
+                <div className="flex">
+                    Link to Public Profile <Popover />
+                </div>
                 <div className="flex">
                     <input type="checkbox" />
                 </div>

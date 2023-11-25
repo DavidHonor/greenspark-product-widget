@@ -35,7 +35,6 @@ function getColorCode(colorName: string): string {
 }
 
 function getIconColor(badgeColorName: string): string {
-    console.log(badgeColorName, badgeColorName in ["blue", "green", "black"]);
     if (["blue", "green", "black"].indexOf(badgeColorName) !== -1)
         return getColorCode("white");
     return getColorCode("green");
