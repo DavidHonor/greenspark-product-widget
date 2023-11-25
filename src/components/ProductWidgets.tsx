@@ -8,7 +8,7 @@ interface ProductWidgetsProps {
 const ProductWidgets = ({ data }: ProductWidgetsProps) => {
     return (
         <div
-            className="flex flex-col w-[350px] md:w-[850px] shadow-md rounded-md p-6"
+            className="flex flex-col w-[350px] md:w-[850px] shadow-lg rounded-md py-6 px-8"
             style={{ backgroundColor: "#F9F9F9" }}
         >
             <div className="flex py-2">
@@ -20,7 +20,7 @@ const ProductWidgets = ({ data }: ProductWidgetsProps) => {
                 style={{ borderColor: "#B0B0B0" }}
             />
 
-            <div className="flex flex-col gap-12 px-4 md:px-0 md:flex-row md:pb-20">
+            <div className="flex flex-col gap-12 px-4 md:px-0 md:flex-row md:pb-24">
                 {data.map((widget) => (
                     <Widget key={`widget_${widget.id}`} widgetData={widget} />
                 ))}
