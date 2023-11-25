@@ -1,21 +1,38 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
 import { ProductWidgetDomain } from "../../types/types";
-import { fetchData } from "../../utils";
 
 interface ProductWidgetState {
+    fetchStatus: "pending" | "rejected" | "fulfilled";
     products: ProductWidgetDomain[];
 }
 
 const initialState: ProductWidgetState = {
+    fetchStatus: "pending",
     products: [],
 };
 
 export const fetchProducts = createAsyncThunk(
     "productWidgets/fetchProducts",
-    async () => {
-        const response = await fetchData();
-        return response.data;
+    async (_, { rejectWithValue, fulfillWithValue }) => {
+        try {
+            const apiUrl = process.env?.REACT_APP_API_URL;
+
+            if (!apiUrl)
+                throw new Error(
+                    "REACT_APP_API_URL is not defined in the environment variables"
+                );
+
+            const response = await fetch(apiUrl);
+
+            if (!response.ok) return rejectWithValue(response.status);
+
+            const data: ProductWidgetDomain[] = await response.json();
+
+            return fulfillWithValue(data);
+        } catch (error) {
+            throw rejectWithValue(error);
+        }
     }
 );
 
@@ -75,11 +92,16 @@ export const productWidgetsSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchProducts.fulfilled, (state, action) => {
-            state.products.push(
-                ...action.payload.map((product) => ({ ...product }))
-            );
-        });
+        builder
+            .addCase(fetchProducts.fulfilled, (state, action) => {
+                state.products.push(
+                    ...action.payload.map((product) => ({ ...product }))
+                );
+                state.fetchStatus = "fulfilled";
+            })
+            .addCase(fetchProducts.rejected, (state, action) => {
+                state.fetchStatus = "rejected";
+            });
     },
 });
 
@@ -92,5 +114,8 @@ export const {
 
 export const selectProducts = (state: RootState) =>
     state.productWidgets.products;
+
+export const selectFetchStatus = (state: RootState) =>
+    state.productWidgets.fetchStatus;
 
 export default productWidgetsSlice.reducer;

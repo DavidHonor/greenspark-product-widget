@@ -1,3 +1,13 @@
+.custom-classname.react-toggle .react-toggle-track {
+    height: 20px;
+}
+
+.custom-classname.react-toggle .react-toggle-thumb {
+    top: 0px;
+    width: 20px;
+    height: 20px;
+}
 .custom-classname.react-toggle--checked .react-toggle-track {
     background-color: #1eab19;
+    height: 20px;
 }

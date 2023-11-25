@@ -1,21 +1,3 @@
-import { ProductWidgetDomain } from "./types/types";
-
-async function fetchData() {
-    try {
-        const response = await fetch(
-            "https://api.mocki.io/v2/016d11e8/product-widgets"
-        );
-
-        const data: ProductWidgetDomain[] = await response.json();
-
-        return { status: "ok", data };
-    } catch (error) {
-        console.error(error);
-
-        return { status: "error", data: [] };
-    }
-}
-
 function getColorCode(colorName: string): string {
     switch (colorName) {
         case "blue":
@@ -40,4 +22,4 @@ function getIconColor(badgeColorName: string): string {
     return getColorCode("green");
 }
 
-export { fetchData, getColorCode, getIconColor };
+export { getColorCode, getIconColor };
