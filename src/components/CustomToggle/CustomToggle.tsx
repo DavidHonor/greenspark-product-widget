@@ -4,7 +4,7 @@ import "./Toggle.css";
 import Toggle from "react-toggle";
 import { AppDispatch } from "../../app/store";
 import { useDispatch } from "react-redux";
-import { updateProductActive } from "../../features/widgets/productWidgetsSlice";
+import { updateWidgetActive } from "../../features/widgets/productWidgetsSlice";
 
 interface CustomToggleProps {
     widgetData: ProductWidgetDomain;
@@ -15,7 +15,7 @@ const CustomToggle = ({ widgetData }: CustomToggleProps) => {
 
     const toggleChange = () => {
         dispatch(
-            updateProductActive({
+            updateWidgetActive({
                 id: widgetData.id,
                 active: !widgetData.active,
             })

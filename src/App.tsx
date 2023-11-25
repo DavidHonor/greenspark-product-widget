@@ -5,35 +5,35 @@ import { Loader2, XCircle } from "lucide-react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-    fetchProducts,
+    fetchProductWidgets,
     selectFetchStatus,
-    selectProducts,
+    selectProductWidgets,
 } from "./features/widgets/productWidgetsSlice";
 import { AppDispatch } from "./app/store";
 
 const App = () => {
     const dispatch: AppDispatch = useDispatch();
 
-    const products = useSelector(selectProducts);
+    const productWidgets = useSelector(selectProductWidgets);
     const fetchStatus = useSelector(selectFetchStatus);
 
     const isFetchingRef = useRef(false);
 
     useEffect(() => {
-        const fetchDataAndDispatch = async () => {
+        const fetchAndDispatch = async () => {
             try {
                 if (!isFetchingRef.current) {
                     isFetchingRef.current = true;
-                    await dispatch(fetchProducts());
+                    await dispatch(fetchProductWidgets());
                 }
             } finally {
                 isFetchingRef.current = false;
             }
         };
-        if (!products || products.length === 0) {
-            fetchDataAndDispatch();
+        if (!productWidgets || productWidgets.length === 0) {
+            fetchAndDispatch();
         }
-    }, [dispatch, products]);
+    }, [dispatch, productWidgets]);
 
     const renderLogic = () => {
         if (fetchStatus === "pending")
@@ -48,7 +48,7 @@ const App = () => {
                 </div>
             );
 
-        return <ProductWidgets data={products} />;
+        return <ProductWidgets data={productWidgets} />;
     };
 
     return (

@@ -4,16 +4,16 @@ import { ProductWidgetDomain } from "../../types/types";
 
 interface ProductWidgetState {
     fetchStatus: "pending" | "rejected" | "fulfilled";
-    products: ProductWidgetDomain[];
+    productWidgets: ProductWidgetDomain[];
 }
 
 const initialState: ProductWidgetState = {
     fetchStatus: "pending",
-    products: [],
+    productWidgets: [],
 };
 
-export const fetchProducts = createAsyncThunk(
-    "productWidgets/fetchProducts",
+export const fetchProductWidgets = createAsyncThunk(
+    "productWidgets/fetchProductWidgets",
     async (_, { rejectWithValue, fulfillWithValue }) => {
         try {
             const apiUrl = process.env?.REACT_APP_API_URL;
@@ -40,22 +40,25 @@ export const productWidgetsSlice = createSlice({
     name: "productWidgets",
     initialState,
     reducers: {
-        addProducts: (state, action: PayloadAction<ProductWidgetDomain[]>) => {
-            state.products.push(
-                ...action.payload.map((product) => ({
-                    ...product,
+        addProductWidgets: (
+            state,
+            action: PayloadAction<ProductWidgetDomain[]>
+        ) => {
+            state.productWidgets.push(
+                ...action.payload.map((widget) => ({
+                    ...widget,
                 }))
             );
         },
-        updateProductActive: (
+        updateWidgetActive: (
             state,
             action: PayloadAction<{ id: number; active: boolean }>
         ) => {
             const { id, active } = action.payload;
-            const productToUpdate = state.products.find(
-                (product) => product.id === id
+            const productToUpdate = state.productWidgets.find(
+                (widget) => widget.id === id
             );
-            state.products.forEach((widget) => (widget.active = false));
+            state.productWidgets.forEach((widget) => (widget.active = false));
 
             if (productToUpdate) {
                 productToUpdate.active = active;
@@ -66,7 +69,7 @@ export const productWidgetsSlice = createSlice({
             action: PayloadAction<{ id: number; linked: boolean }>
         ) => {
             const { id, linked } = action.payload;
-            const widgetToUpdate = state.products.find(
+            const widgetToUpdate = state.productWidgets.find(
                 (widget) => widget.id === id
             );
 
@@ -82,7 +85,7 @@ export const productWidgetsSlice = createSlice({
             }>
         ) => {
             const { id, selectedColor } = action.payload;
-            const widgetToUpdate = state.products.find(
+            const widgetToUpdate = state.productWidgets.find(
                 (widget) => widget.id === id
             );
 
@@ -93,27 +96,27 @@ export const productWidgetsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchProducts.fulfilled, (state, action) => {
-                state.products.push(
-                    ...action.payload.map((product) => ({ ...product }))
+            .addCase(fetchProductWidgets.fulfilled, (state, action) => {
+                state.productWidgets.push(
+                    ...action.payload.map((widget) => ({ ...widget }))
                 );
                 state.fetchStatus = "fulfilled";
             })
-            .addCase(fetchProducts.rejected, (state, action) => {
+            .addCase(fetchProductWidgets.rejected, (state, action) => {
                 state.fetchStatus = "rejected";
             });
     },
 });
 
 export const {
-    addProducts,
-    updateProductActive,
+    addProductWidgets,
+    updateWidgetActive,
     updateWidgetLinked,
     updateWidgetColor,
 } = productWidgetsSlice.actions;
 
-export const selectProducts = (state: RootState) =>
-    state.productWidgets.products;
+export const selectProductWidgets = (state: RootState) =>
+    state.productWidgets.productWidgets;
 
 export const selectFetchStatus = (state: RootState) =>
     state.productWidgets.fetchStatus;
