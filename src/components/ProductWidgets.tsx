@@ -14,7 +14,7 @@ const ProductWidgets = ({ data }: ProductWidgetsProps) => {
             <div className="flex py-2">
                 <h2 className="font-bold text-3xl">Per product widgets</h2>
             </div>
-            <div className="border-t-2" />
+            <div className="border-t-2" style={{ borderColor: "#B0B0B0" }} />
             <div className="flex flex-col md:flex-row">
                 {data.map((widget) => (
                     <Widget key={`widget_${widget.id}`} widgetData={widget} />

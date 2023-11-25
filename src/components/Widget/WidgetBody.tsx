@@ -14,10 +14,13 @@ const WidgetBody = ({ widgetData }: WidgetBodyProps) => {
     const textColor = getColorCode("green");
 
     return (
-        <div className="flex flex-col" style={{ color: textColor }}>
+        <div className="flex flex-col gap-y-2" style={{ color: textColor }}>
             <div className="flex justify-between">
                 <div className="flex">
-                    Link to Public Profile <Popover />
+                    Link to Public Profile
+                    <div className="relative">
+                        <Popover />
+                    </div>
                 </div>
                 <div className="flex">
                     <CustomCheckbox widgetData={widgetData} />
