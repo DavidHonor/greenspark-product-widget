@@ -31,10 +31,11 @@ const WidgetHeader = ({ widgetData }: WidgetHeaderProps) => {
                 >
                     This product {widgetData.action}
                 </div>
-                <div className="flex">
-                    <h2 className="font-bold" style={{ fontSize: "1.116rem" }}>
-                        {printAmount()}
-                    </h2>
+                <div
+                    className="flex font-bold"
+                    style={{ fontSize: "1.116rem" }}
+                >
+                    {printAmount()}
                 </div>
             </div>
         </div>
