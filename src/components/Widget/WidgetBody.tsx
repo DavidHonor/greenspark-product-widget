@@ -26,7 +26,7 @@ const WidgetBody = ({ widgetData }: WidgetBodyProps) => {
 
             <div className="flex justify-between">
                 <div className="flex">Badge colour</div>
-                <div className="flex">
+                <div className="flex gap-1">
                     <BadgeColorSelect widgetData={widgetData} />
                 </div>
             </div>
