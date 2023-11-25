@@ -22,13 +22,13 @@ const CustomCheckbox = ({ widgetData }: CustomCheckboxProps) => {
     };
 
     return (
-        <input
-            checked={widgetData.linked}
-            onChange={checkChanged}
-            type="checkbox"
-            name=""
-            id=""
-        />
+        <div className="checkbox-container">
+            <input
+                type="checkbox"
+                checked={widgetData.linked}
+                onChange={checkChanged}
+            />
+        </div>
     );
 };
 

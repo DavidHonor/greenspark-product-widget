@@ -38,6 +38,7 @@ export const productWidgetsSlice = createSlice({
             const productToUpdate = state.products.find(
                 (product) => product.id === id
             );
+            state.products.forEach((widget) => (widget.active = false));
 
             if (productToUpdate) {
                 productToUpdate.active = active;

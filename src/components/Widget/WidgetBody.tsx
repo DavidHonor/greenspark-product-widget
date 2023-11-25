@@ -2,6 +2,7 @@ import { ProductWidgetDomain } from "../../types/types";
 import { getColorCode } from "../../utils";
 import BadgeColorSelect from "../BadgeColorSelect/BadgeColorSelect";
 import CustomCheckbox from "../CustomCheckbox/CustomCheckbox";
+import CustomToggle from "../CustomToggle/CustomToggle";
 
 import Popover from "../Popover/Popover";
 
@@ -33,7 +34,7 @@ const WidgetBody = ({ widgetData }: WidgetBodyProps) => {
             <div className="flex justify-between">
                 <div className="flex">Activate badge</div>
                 <div className="flex">
-                    <input type="checkbox" />
+                    <CustomToggle widgetData={widgetData} />
                 </div>
             </div>
         </div>
