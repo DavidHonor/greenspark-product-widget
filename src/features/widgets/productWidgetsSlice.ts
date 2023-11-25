@@ -30,6 +30,48 @@ export const productWidgetsSlice = createSlice({
                 }))
             );
         },
+        updateProductActive: (
+            state,
+            action: PayloadAction<{ id: number; active: boolean }>
+        ) => {
+            const { id, active } = action.payload;
+            const productToUpdate = state.products.find(
+                (product) => product.id === id
+            );
+
+            if (productToUpdate) {
+                productToUpdate.active = active;
+            }
+        },
+        updateWidgetLinked: (
+            state,
+            action: PayloadAction<{ id: number; linked: boolean }>
+        ) => {
+            const { id, linked } = action.payload;
+            const widgetToUpdate = state.products.find(
+                (widget) => widget.id === id
+            );
+
+            if (widgetToUpdate) {
+                widgetToUpdate.linked = linked;
+            }
+        },
+        updateWidgetColor: (
+            state,
+            action: PayloadAction<{
+                id: number;
+                selectedColor: "white" | "black" | "blue" | "green" | "beige";
+            }>
+        ) => {
+            const { id, selectedColor } = action.payload;
+            const widgetToUpdate = state.products.find(
+                (widget) => widget.id === id
+            );
+
+            if (widgetToUpdate) {
+                widgetToUpdate.selectedColor = selectedColor;
+            }
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
@@ -40,7 +82,12 @@ export const productWidgetsSlice = createSlice({
     },
 });
 
-export const { addProducts } = productWidgetsSlice.actions;
+export const {
+    addProducts,
+    updateProductActive,
+    updateWidgetLinked,
+    updateWidgetColor,
+} = productWidgetsSlice.actions;
 
 export const selectProducts = (state: RootState) =>
     state.productWidgets.products;

@@ -9,12 +9,11 @@ interface WidgetHeaderProps {
 const WidgetHeader = ({ widgetData }: WidgetHeaderProps) => {
     const badgeColor = getColorCode(widgetData.selectedColor);
     const iconColor = getIconColor(widgetData.selectedColor);
-    const textColor = "#F9F9F9";
 
     return (
         <div
             className={`flex rounded-md p-2 gap-2`}
-            style={{ backgroundColor: badgeColor, color: textColor }}
+            style={{ backgroundColor: badgeColor, color: iconColor }}
         >
             <div className="flex">
                 <WidgetIcon fill={iconColor} />

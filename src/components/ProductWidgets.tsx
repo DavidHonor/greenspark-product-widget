@@ -1,7 +1,5 @@
-import React from "react";
 import Widget from "./Widget/Widget";
 import { ProductWidgetDomain } from "../types/types";
-import { getColorCode } from "../utils";
 
 interface ProductWidgetsProps {
     data: ProductWidgetDomain[];

@@ -1,9 +1,15 @@
+import { ProductWidgetDomain } from "../../types/types";
 import { getColorCode } from "../../utils";
+import BadgeColorSelect from "../BadgeColorSelect/BadgeColorSelect";
 import CustomCheckbox from "../CustomCheckbox/CustomCheckbox";
 
 import Popover from "../Popover/Popover";
 
-const WidgetBody = () => {
+interface WidgetBodyProps {
+    widgetData: ProductWidgetDomain;
+}
+
+const WidgetBody = ({ widgetData }: WidgetBodyProps) => {
     const textColor = getColorCode("green");
 
     return (
@@ -13,18 +19,14 @@ const WidgetBody = () => {
                     Link to Public Profile <Popover />
                 </div>
                 <div className="flex">
-                    <CustomCheckbox />
+                    <CustomCheckbox widgetData={widgetData} />
                 </div>
             </div>
 
             <div className="flex justify-between">
                 <div className="flex">Badge colour</div>
                 <div className="flex">
-                    <input type="checkbox" />
-                    <input type="checkbox" />
-                    <input type="checkbox" />
-                    <input type="checkbox" />
-                    <input type="checkbox" />
+                    <BadgeColorSelect widgetData={widgetData} />
                 </div>
             </div>
 
