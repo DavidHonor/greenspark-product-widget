@@ -1,9 +1,11 @@
 import React, { ChangeEvent } from "react";
-import "./CustomCheckbox.css";
+
 import { ProductWidgetDomain } from "../../types/types";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/store";
 import { updateWidgetLinked } from "../../features/widgets/productWidgetsSlice";
+import { cn, getColorCode } from "../../utils";
+import { Check } from "lucide-react";
 
 interface CustomCheckboxProps {
     widgetData: ProductWidgetDomain;
@@ -12,7 +14,7 @@ interface CustomCheckboxProps {
 const CustomCheckbox = ({ widgetData }: CustomCheckboxProps) => {
     const dispatch: AppDispatch = useDispatch();
 
-    const checkChanged = (change: ChangeEvent<HTMLInputElement>) => {
+    const onCheckChanged = () => {
         dispatch(
             updateWidgetLinked({
                 id: widgetData.id,
@@ -22,11 +24,36 @@ const CustomCheckbox = ({ widgetData }: CustomCheckboxProps) => {
     };
 
     return (
-        <div className="checkbox-container">
-            <input
-                type="checkbox"
-                checked={widgetData.linked}
-                onChange={checkChanged}
+        <div
+            className="flex items-center justify-center w-[18px] h-[18px] relative group"
+            style={{
+                backgroundColor: widgetData.linked
+                    ? getColorCode("green")
+                    : "white",
+                borderColor: widgetData.linked
+                    ? getColorCode("green")
+                    : getColorCode("black"),
+                borderWidth: "2px",
+                borderRadius: "2px",
+            }}
+            onClick={onCheckChanged}
+        >
+            {widgetData.linked ? <Check className="text-white" /> : null}
+
+            <div
+                className={cn(
+                    "pointer-events-none opacity-0 absolute inset-0 transition-opacity duration-300 ease-in-out",
+                    {
+                        "group-hover:opacity-90": !widgetData.linked,
+                    }
+                )}
+                style={{
+                    borderRadius: "50%",
+                    backgroundColor: "#afc6bd",
+                    height: "30px",
+                    width: "30px",
+                    margin: "-8px",
+                }}
             />
         </div>
     );
