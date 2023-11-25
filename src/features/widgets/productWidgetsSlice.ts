@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
 import { ColorOptions, ProductWidgetDomain } from "../../types/types";
+import { findWidgetToUpdate } from "../../utils";
 
 interface ProductWidgetState {
     fetchStatus: "pending" | "rejected" | "fulfilled";
@@ -55,27 +56,20 @@ export const productWidgetsSlice = createSlice({
             action: PayloadAction<{ id: number; active: boolean }>
         ) => {
             const { id, active } = action.payload;
-            const productToUpdate = state.productWidgets.find(
-                (widget) => widget.id === id
-            );
+            const widgetToUpdate = findWidgetToUpdate(state.productWidgets, id);
+
             state.productWidgets.forEach((widget) => (widget.active = false));
 
-            if (productToUpdate) {
-                productToUpdate.active = active;
-            }
+            widgetToUpdate.active = active;
         },
         updateWidgetLinked: (
             state,
             action: PayloadAction<{ id: number; linked: boolean }>
         ) => {
             const { id, linked } = action.payload;
-            const widgetToUpdate = state.productWidgets.find(
-                (widget) => widget.id === id
-            );
+            const widgetToUpdate = findWidgetToUpdate(state.productWidgets, id);
 
-            if (widgetToUpdate) {
-                widgetToUpdate.linked = linked;
-            }
+            widgetToUpdate.linked = linked;
         },
         updateWidgetColor: (
             state,
@@ -85,13 +79,9 @@ export const productWidgetsSlice = createSlice({
             }>
         ) => {
             const { id, selectedColor } = action.payload;
-            const widgetToUpdate = state.productWidgets.find(
-                (widget) => widget.id === id
-            );
+            const widgetToUpdate = findWidgetToUpdate(state.productWidgets, id);
 
-            if (widgetToUpdate) {
-                widgetToUpdate.selectedColor = selectedColor;
-            }
+            widgetToUpdate.selectedColor = selectedColor;
         },
     },
     extraReducers: (builder) => {

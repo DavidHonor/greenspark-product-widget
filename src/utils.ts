@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { ProductWidgetDomain } from "./types/types";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -29,4 +30,16 @@ function getIconColor(badgeColorName: string): string {
     return getColorCode("green");
 }
 
-export { getColorCode, getIconColor };
+const findWidgetToUpdate = (
+    widgets: ProductWidgetDomain[],
+    widgetId: number
+) => {
+    const widgetToUpdate = widgets.find((widget) => widget.id === widgetId);
+
+    if (!widgetToUpdate)
+        throw new Error(`Widget with id ${widgetId} not found.`);
+
+    return widgetToUpdate;
+};
+
+export { getColorCode, getIconColor, findWidgetToUpdate };
