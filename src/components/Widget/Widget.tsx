@@ -1,7 +1,4 @@
-import React from "react";
-import WidgetIcon from "./WidgetIcon";
 import { ProductWidgetDomain } from "../../types/types";
-import { getColorCode } from "../../utils";
 import WidgetHeader from "./WidgetHeader";
 import WidgetBody from "./WidgetBody";
 

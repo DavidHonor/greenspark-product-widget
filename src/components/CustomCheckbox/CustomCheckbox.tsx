@@ -1,5 +1,3 @@
-import React, { ChangeEvent } from "react";
-
 import { ProductWidgetDomain } from "../../types/types";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/store";

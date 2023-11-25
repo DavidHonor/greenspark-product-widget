@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
-import { ProductWidgetDomain } from "../../types/types";
+import { ColorOptions, ProductWidgetDomain } from "../../types/types";
 
 interface ProductWidgetState {
     fetchStatus: "pending" | "rejected" | "fulfilled";
@@ -81,7 +81,7 @@ export const productWidgetsSlice = createSlice({
             state,
             action: PayloadAction<{
                 id: number;
-                selectedColor: "white" | "black" | "blue" | "green" | "beige";
+                selectedColor: ColorOptions;
             }>
         ) => {
             const { id, selectedColor } = action.payload;

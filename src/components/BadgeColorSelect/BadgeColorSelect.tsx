@@ -1,5 +1,5 @@
 import React from "react";
-import { ProductWidgetDomain } from "../../types/types";
+import { ColorOptions, ProductWidgetDomain } from "../../types/types";
 import { AppDispatch } from "../../app/store";
 import { useDispatch } from "react-redux";
 import { updateWidgetColor } from "../../features/widgets/productWidgetsSlice";
@@ -9,18 +9,16 @@ interface BadgeColorSelectProps {
     widgetData: ProductWidgetDomain;
 }
 
-type options = "white" | "black" | "blue" | "green" | "beige";
-
 const BadgeColorSelect = ({ widgetData }: BadgeColorSelectProps) => {
     const dispatch: AppDispatch = useDispatch();
 
-    const colorChanged = (colorName: options) => {
+    const colorChanged = (colorName: ColorOptions) => {
         dispatch(
             updateWidgetColor({ id: widgetData.id, selectedColor: colorName })
         );
     };
 
-    const colors: options[] = ["blue", "green", "beige", "white", "black"];
+    const colors: ColorOptions[] = ["blue", "green", "beige", "white", "black"];
 
     return (
         <>
